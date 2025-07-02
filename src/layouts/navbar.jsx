@@ -32,11 +32,11 @@ const Navbar = () => {
         <>
             <div className="z-50 hidden md:flex bg-[#f5f5f5] p-4 text-center flex-col md:flex-row items-center justify-center md:gap-[24.7rem] text-sm leading-[22px] text-[#888]">
                 <div className="flex items-center justify-center gap-4 text-[19px] mb-2 md:mb-0">
-                    <a href="" className="hover:text-[#e65540] transition-colors"><FaFacebookF /></a>
-                    <a href="" className="hover:text-[#e65540] transition-colors"><FaTwitter /></a>
-                    <a href="" className="hover:text-[#e65540] transition-colors"><FaPinterestSquare /></a>
-                    <a href="" className="hover:text-[#e65540] transition-colors"><FaGooglePlusG /></a>
-                    <a href="" className="hover:text-[#e65540] transition-colors"><FaInstagram /></a>
+                    <a href="https://www.facebook.com/shopify" className="hover:text-[#e65540] transition-colors"><FaFacebookF /></a>
+                    <a href="https://www.facebook.com/shopify" className="hover:text-[#e65540] transition-colors"><FaTwitter /></a>
+                    <a href="https://www.pinterest.com/shopify/" className="hover:text-[#e65540] transition-colors"><FaPinterestSquare /></a>
+                    <a href="https://workspaceupdates.googleblog.com/2023/04/new-community-features-for-google-chat-and-an-update-currents%20.html" className="hover:text-[#e65540] transition-colors"><FaGooglePlusG /></a>
+                    <a href="https://www.instagram.com/shopify/" className="hover:text-[#e65540] transition-colors"><FaInstagram /></a>
                 </div>
                 <div className="mb-2 md:mb-0">
                     <p>Free shipping for standard order over $100</p>

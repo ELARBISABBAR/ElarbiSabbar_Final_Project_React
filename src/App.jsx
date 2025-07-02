@@ -10,6 +10,7 @@ import AboutPage from './pages/about/about'
 import ContactPage from './pages/contact/contact'
 import AccessPage from './pages/access/access'
 import FeaturesPage from './pages/features'
+import SalePage from './pages/sale'
 import { CartProvider } from './context/CartContext'
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/access" element={<AccessPage />} />
         <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/sale" element={<SalePage />} />
       </Routes>
 
       <Footer />
