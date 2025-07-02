@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaFacebookF, FaTwitter, FaPinterestSquare, FaGooglePlusG, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        if (!email) {
+            alert('Please enter your email address.');
+            return;
+        }
+        alert(`Subscribed with: ${email}`);
+        setEmail('');
+    };
     return (
         <footer className="bg-[#f2f2f2] pt-[60px] pb-5 font-montserrat text-[#222] font-normal">
             <div className="max-w-[1400px] mx-auto flex flex-wrap justify-between items-start px-10 gap-y-10">
@@ -52,10 +62,12 @@ const Footer = () => {
 
                 <div className="flex-[1.2] min-w-[300px] mb-0 flex flex-col items-start justify-start">
                     <h3 className="font-bold text-[15px] mb-5">NEWSLETTER</h3>
-                    <form className="flex flex-col gap-5 w-full" onSubmit={e => e.preventDefault()}>
+                    <form className="flex flex-col gap-5 w-full" onSubmit={handleSubscribe}>
                         <input 
                             type="email"
                             placeholder="Email Address"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             className="w-full text-[16px] font-normal mb-2 px-1 py-2 bg-transparent border-0 border-b border-[#d3d3d3] focus:outline-none focus:border-[#e65540] transition-colors placeholder:text-[#888]" 
                         />
                         <button type="submit" className="bg-[#111111] text-white border-none rounded-[30px] py-[10px] text-[16px] font-normal cursor-pointer w-[180px] self-start hover:bg-[#e65540] transition-colors">SUBSCRIBE</button>
