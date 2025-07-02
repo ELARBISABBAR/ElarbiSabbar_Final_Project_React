@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Access = () => {
     const [showCreate, setShowCreate] = useState(false);
+    const navigate = useNavigate();
 
     if (showCreate) {
         return (
@@ -32,7 +34,7 @@ const Access = () => {
                         <button type="submit" className="bg-gray-900 hover:bg-[#e65540] transition-colors text-white text-base font-semibold py-3 px-10 flex items-center gap-2">
                             <span role="img" aria-label="user">👤</span> CREATE
                         </button>
-                        <a href="#" onClick={e => { e.preventDefault(); setShowCreate(false); }} className="ml-6 text-gray-600 hover:text-[#e65540] transition-colors text-base">
+                        <a href="#" onClick={e => { e.preventDefault(); navigate('/'); }} className="ml-6 text-gray-600 hover:text-[#e65540] transition-colors text-base">
                             or Return to Store
                         </a>
                     </div>
