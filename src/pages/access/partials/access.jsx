@@ -4,6 +4,35 @@ import { useNavigate } from 'react-router-dom';
 const Access = () => {
     const [showCreate, setShowCreate] = useState(false);
     const navigate = useNavigate();
+    const [signInEmail, setSignInEmail] = useState('');
+    const [signInPassword, setSignInPassword] = useState('');
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const firstName = form[0].value;
+        const lastName = form[1].value;
+        const email = form[2].value;
+        const password = form[3].value;
+        if (!firstName || !lastName || !email || !password) {
+            alert('Please fill in all fields.');
+            return;
+        }
+        localStorage.setItem('user', JSON.stringify({ firstName, lastName, email, password }));
+        alert('Account created successfully! You can now sign in.');
+        setShowCreate(false);
+    };
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user && user.email === signInEmail && user.password === signInPassword) {
+            alert('Sign in successful!');
+            navigate('/');
+        } else {
+            alert('Invalid email or password.');
+        }
+    };
 
     if (showCreate) {
         return (
@@ -13,7 +42,7 @@ const Access = () => {
                 </nav>
                 <h1 className="text-4xl font-light mb-2">Create Account</h1>
                 <h2 className="text-lg text-gray-600 mb-8">Your Personal Details</h2>
-                <form className="w-full max-w-2xl flex flex-col gap-6">
+                <form className="w-full max-w-2xl flex flex-col gap-6" onSubmit={handleRegister}>
                     <div>
                         <label className="block text-base mb-1">First Name</label>
                         <input type="text" placeholder="First Name" className="w-full border border-gray-300 p-3 text-base" />
@@ -64,29 +93,27 @@ const Access = () => {
                     <div className="flex-1 max-w-[600px] border border-gray-300 p-8">
                         <h1 className="text-[32px] mb-4">Returning Customer</h1>
                         <p className="text-[15px] text-gray-600 mb-6">I am a returning customer</p>
-                        
-                        <div className="mb-4">
-                            <label className="block text-[15px] text-gray-800 mb-2">Email</label>
-                            <input type="email" className="w-full p-2 border border-gray-300 text-[13px]" />
-                        </div>
-                        
-                        <div className="mb-4">
-                            <label className="block text-[15px] text-gray-800 mb-2">Password</label>
-                            <input type="password" placeholder="Password" className="w-full p-2 border border-gray-300 text-[13px]" />
-                        </div>
-                        
-                        <a href="#" className="block text-[15px] text-gray-600 mb-5 hover:text-[#e65540] transition-colors">
-                            Forgot your password?
-                        </a>
-                        
-                        <div className="flex items-center">
-                            <button className="bg-gray-800 hover:bg-[#e65540] transition-colors text-white text-xs uppercase py-3 px-6">
-                                Sign In
-                            </button>
-                            <a href="#" className="text-[15px] text-gray-600 ml-4 hover:text-[#e65540] transition-colors">
-                                or Return to Store
+                        <form onSubmit={handleSignIn}>
+                            <div className="mb-4">
+                                <label className="block text-[15px] text-gray-800 mb-2">Email</label>
+                                <input type="email" value={signInEmail} onChange={e => setSignInEmail(e.target.value)} className="w-full p-2 border border-gray-300 text-[13px]" />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-[15px] text-gray-800 mb-2">Password</label>
+                                <input type="password" value={signInPassword} onChange={e => setSignInPassword(e.target.value)} placeholder="Password" className="w-full p-2 border border-gray-300 text-[13px]" />
+                            </div>
+                            <a href="#" className="block text-[15px] text-gray-600 mb-5 hover:text-[#e65540] transition-colors">
+                                Forgot your password?
                             </a>
-                        </div>
+                            <div className="flex items-center">
+                                <button type="submit" className="bg-gray-800 hover:bg-[#e65540] transition-colors text-white text-xs uppercase py-3 px-6">
+                                    Sign In
+                                </button>
+                                <a href="#" onClick={e => { e.preventDefault(); navigate('/'); }} className="text-[15px] text-gray-600 ml-4 hover:text-[#e65540] transition-colors">
+                                    or Return to Store
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
