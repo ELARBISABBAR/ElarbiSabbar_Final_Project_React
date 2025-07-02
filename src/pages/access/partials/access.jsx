@@ -1,6 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Access = () => {
+    const [showCreate, setShowCreate] = useState(false);
+
+    if (showCreate) {
+        return (
+            <div className="container mx-auto max-w-[900px] min-h-screen flex flex-col items-start justify-center px-4 py-12">
+                <nav className="mb-6 text-sm text-gray-500">
+                    <span>Home</span> &gt; <span>Create Account</span>
+                </nav>
+                <h1 className="text-4xl font-light mb-2">Create Account</h1>
+                <h2 className="text-lg text-gray-600 mb-8">Your Personal Details</h2>
+                <form className="w-full max-w-2xl flex flex-col gap-6">
+                    <div>
+                        <label className="block text-base mb-1">First Name</label>
+                        <input type="text" placeholder="First Name" className="w-full border border-gray-300 p-3 text-base" />
+                    </div>
+                    <div>
+                        <label className="block text-base mb-1">Last Name</label>
+                        <input type="text" placeholder="Last Name" className="w-full border border-gray-300 p-3 text-base" />
+                    </div>
+                    <div>
+                        <label className="block text-base mb-1">Email</label>
+                        <input type="email" placeholder="Email" className="w-full border border-gray-300 p-3 text-base" />
+                    </div>
+                    <div>
+                        <label className="block text-base mb-1">Password</label>
+                        <input type="password" placeholder="Password" className="w-full border border-gray-300 p-3 text-base" />
+                    </div>
+                    <div className="flex items-center mt-2">
+                        <button type="submit" className="bg-gray-900 hover:bg-[#e65540] transition-colors text-white text-base font-semibold py-3 px-10 flex items-center gap-2">
+                            <span role="img" aria-label="user">👤</span> CREATE
+                        </button>
+                        <a href="#" onClick={e => { e.preventDefault(); setShowCreate(false); }} className="ml-6 text-gray-600 hover:text-[#e65540] transition-colors text-base">
+                            or Return to Store
+                        </a>
+                    </div>
+                </form>
+            </div>
+        );
+    }
+
     return (
         <>
             <div className="container mx-auto max-w-[1300px] min-h-screen flex items-center justify-center">
@@ -14,7 +54,7 @@ const Access = () => {
                             on an order's status, and keep track of the orders you have previously
                             made.
                         </p>
-                        <button className="bg-gray-800 hover:bg-[#e65540] transition-colors text-white text-xs uppercase py-3 px-6">
+                        <button onClick={() => setShowCreate(true)} className="bg-gray-800 hover:bg-[#e65540] transition-colors text-white text-xs uppercase py-3 px-6">
                             Continue
                         </button>
                     </div>
